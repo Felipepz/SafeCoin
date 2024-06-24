@@ -1,4 +1,4 @@
-PORTIFÓLIIO DE CRIPTOMOEDA
+PORTIFÓLIO DE CRIPTOMOEDA
 
 * Será utilizado para monitoramento dos ativos.
 
