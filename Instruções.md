@@ -35,3 +35,11 @@
 2. **Criar as Branches:** Estabelecer branches no controle de versão.
 3. **Criar as Tabelas:** Definir e criar as tabelas no banco de dados.
 4. **Dividir o Trabalho:** Distribuir tarefas entre os membros da equipe.
+
+#### Pendências do 2° Ciclo
+
+1. **Criar Inserts:** Desenvolver scripts de inserção de dados.
+2. **Entrega da Tela HTML Base:** Finalizar e entregar a estrutura básica da tela HTML.
+3. **Definir o Padrão para o HTML:** Estabelecer normas e padrões para o desenvolvimento HTML.
+4. **Iniciar o Backend:** Começar o desenvolvimento da lógica de backend.
+5. **Iniciar as Telas HTML:** Começar a criação das telas HTML.
