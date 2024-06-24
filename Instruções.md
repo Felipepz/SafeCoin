@@ -5,17 +5,17 @@
 #### Personagens
 
 - **Admin:** Responsável por cadastrar criptomoedas.
-- **User:** Responsável por cadastrar carteiras.
+- **User:** Responsável por cadastrar carteiras e seu proprio perfil.
 
 #### Tabelas
 
-- **Corretoras:** Informações sobre as corretoras.
-- **Criptomoedas:** Detalhes das criptomoedas.
-- **Moeda bancárias ou investimentos como bolsa de valores:** Dados de moedas tradicionais e investimentos.
-- **Administradores:** Dados dos administradores do sistema.
-- **Usuários:** Informações dos usuários.
-- **Carteiras:** Detalhes das carteiras de criptomoedas.
-- **Endereços:** Endereços associados aos usuários.
+- **Corretoras:** Informações sobre as corretoras. / ID, Nome, Pontuação/ 
+- **Criptomoedas:** Detalhes das criptomoedas./ ID, Nome, Sigla, Valor API, Corretora FK, Link API/ 
+- **Moeda bancárias ou investimentos como bolsa de valores:** Dados de moedas tradicionais e investimentos. / ID, Nome, Sigla, Valor API, Corretora FK, Link API/ 
+- **Administradores:** Dados dos administradores do sistema./ ID, Nome, Data Nascimento, CPF / 
+- **Usuários:** Informações dos usuários. / ID, Nome, Data Nascimento/ 
+- **Transações:** Transações./ ID, Ação, CriptoMoeda, Quantidade, Valor Atual, Data Ação/ 
+- **Carteiras:** Detalhes das carteiras de criptomoedas./ ID, Nome, Transações FK, Usuario FK/  
 
 #### Desafio
 
