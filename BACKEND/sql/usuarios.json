@@ -1,0 +1,42 @@
+[
+    {
+        "id": 1,
+        "nome": "David Lima",
+        "data_nascimento": "1990-07-20",
+        "email": "david.lima@example.com",
+        "senha": "$2b$12$TJYfq2QCDwstKUtrpx6ZK.wnKS2AXPqhcKGVsffuVetYg1eUTMot2",
+        "token": ""
+    },
+    {
+        "id": 2,
+        "nome": "Eva Santos",
+        "data_nascimento": "1995-03-10",
+        "email": "eva.santos@example.com",
+        "senha": "$2b$12$TJYfq2QCDwstKUtrpx6ZK.wnKS2AXPqhcKGVsffuVetYg1eUTMot2",
+        "token": ""
+    },
+    {
+        "id": 3,
+        "nome": "Felipe Costa",
+        "data_nascimento": "1988-09-25",
+        "email": "felipe.costa@example.com",
+        "senha": "$2b$12$TJYfq2QCDwstKUtrpx6ZK.wnKS2AXPqhcKGVsffuVetYg1eUTMot2",
+        "token": ""
+    },
+    {
+        "id": 4,
+        "nome": "Gabriela Oliveira",
+        "data_nascimento": "1992-01-15",
+        "email": "gabriela.oliveira@example.com",
+        "senha": "$2b$12$TJYfq2QCDwstKUtrpx6ZK.wnKS2AXPqhcKGVsffuVetYg1eUTMot2",
+        "token": ""
+    },
+    {
+        "id": 5,
+        "nome": "Hugo Martins",
+        "data_nascimento": "1985-12-05",
+        "email": "hugo.martins@example.com",
+        "senha": "$2b$12$TJYfq2QCDwstKUtrpx6ZK.wnKS2AXPqhcKGVsffuVetYg1eUTMot2",
+        "token": ""
+    }
+]
