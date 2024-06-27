@@ -1,7 +1,7 @@
 version: '3.8'
 services:
   web:
-    container_name: safecoin.cachoeiro.es
+    container_name: SafeCoin.cachoeiro.es
     build: .
     ports:
       - "8066:8000"
