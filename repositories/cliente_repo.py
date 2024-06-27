@@ -28,8 +28,7 @@ class ClienteRepo:
                         cliente.endereco,
                         cliente.telefone,
                         cliente.email,
-                        cliente.senha,
-                        cliente.admin,
+                        cliente.senha,  
                     ),
                 )
                 if cursor.rowcount > 0:
