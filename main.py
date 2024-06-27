@@ -1,3 +1,21 @@
+import sys
+import os
+import shutil
+
+# Impedir a criação de arquivos .pyc
+sys.dont_write_bytecode = True
+
+# Função para excluir todos os diretórios __pycache__
+def remove_pycache_dirs(path="."):
+    for root, dirs, files in os.walk(path):
+        for dir in dirs:
+            if dir == "__pycache__":
+                shutil.rmtree(os.path.join(root, dir))
+                print(f"Removed {os.path.join(root, dir)}")
+
+# Chamar a função para remover os diretórios __pycache__ no início do script
+remove_pycache_dirs()
+
 from fastapi import Depends, FastAPI
 from fastapi.staticfiles import StaticFiles
 from repositories.cliente_repo import ClienteRepo
@@ -14,6 +32,7 @@ ClienteRepo.criar_tabela()
 ClienteRepo.inserir_clientes_json("sql/clientes.json")
 PedidoRepo.criar_tabela()
 ItemPedidoRepo.criar_tabela()
+
 app = FastAPI(dependencies=[Depends(checar_permissao)])
 app.mount(path="/static", app=StaticFiles(directory="static"), name="static")
 app.middleware(middleware_type="http")(middleware_autenticacao)
