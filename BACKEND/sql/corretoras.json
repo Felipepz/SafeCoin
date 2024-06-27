@@ -1,0 +1,27 @@
+[
+    {
+        "id": 1,
+        "nome": "Binance",
+        "pontuacao": 4.9
+    },
+    {
+        "id": 2,
+        "nome": "Coinbase",
+        "pontuacao": 4.7
+    },
+    {
+        "id": 3,
+        "nome": "Kraken",
+        "pontuacao": 4.5
+    },
+    {
+        "id": 4,
+        "nome": "Bitfinex",
+        "pontuacao": 4.4
+    },
+    {
+        "id": 5,
+        "nome": "Huobi",
+        "pontuacao": 4.3
+    }
+]
