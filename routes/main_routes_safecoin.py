@@ -85,4 +85,3 @@ async def get_cadastro_transacao(request: Request):
         "cadastro_transacao.html",
         {"request": request},
     )
-    
