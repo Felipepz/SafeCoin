@@ -39,8 +39,7 @@ async def get_root(request: Request):
             "produtos": produtos,
         },
     )
-
-
+    
 @router.get("/contato")
 async def get_contato(request: Request):
     return templates.TemplateResponse(
