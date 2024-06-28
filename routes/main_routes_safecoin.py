@@ -22,6 +22,14 @@ from util.templates import obter_jinja_templates
 router = APIRouter()
 templates = obter_jinja_templates("html_safecoin")
 
+
+@router.get("/transacoes")
+async def get_transacoes(request: Request):
+    return templates.TemplateResponse(
+        "transacoes.html",
+        {"request": request},
+    )
+
 @router.get("/portfolio")
 async def get_portfolio(request: Request):
     return templates.TemplateResponse(
@@ -56,3 +64,25 @@ async def get_cadastro_administrador(request: Request):
         "cadastro_administrador.html",
         {"request": request},
     )
+    
+@router.get("/cadastro_corretora")
+async def get_cadastro_corretora(request: Request):
+    return templates.TemplateResponse(
+        "cadastro_corretora.html",
+        {"request": request},
+    )
+    
+@router.get("/cadastro_criptomoeda")
+async def get_cadastro_criptomoeda(request: Request):
+    return templates.TemplateResponse(
+        "cadastro_corretora.html",
+        {"request": request},
+    )
+    
+@router.get("/cadastro_trasacao")
+async def get_cadastro_transacao(request: Request):
+    return templates.TemplateResponse(
+        "cadastro_transacao.html",
+        {"request": request},
+    )
+    
