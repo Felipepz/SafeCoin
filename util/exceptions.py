@@ -4,7 +4,7 @@ from fastapi.responses import RedirectResponse
 from util.cookies import adicionar_mensagem_erro
 from util.templates import obter_jinja_templates
 
-templates = obter_jinja_templates("templates")
+templates = obter_jinja_templates("html_safecoin")
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
@@ -38,7 +38,7 @@ def configurar_excecoes(app: FastAPI):
     @app.exception_handler(404)
     async def page_not_found_exception_handler(request: Request, _ ):
         return templates.TemplateResponse(
-            "pages/404.html", {"request": request, "cliente": request.state.cliente}
+            "404.html", {"request": request, "cliente": request.state.cliente}
         )
 
     @app.exception_handler(HTTPException)

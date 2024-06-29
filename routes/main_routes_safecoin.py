@@ -23,6 +23,13 @@ router = APIRouter()
 templates = obter_jinja_templates("html_safecoin")
 
 
+@router.get("/")
+async def get_dashboard(request: Request):
+    return templates.TemplateResponse(
+        "dashboard.html",
+        {"request": request},
+    )
+
 @router.get("/transacoes")
 async def get_transacoes(request: Request):
     return templates.TemplateResponse(
