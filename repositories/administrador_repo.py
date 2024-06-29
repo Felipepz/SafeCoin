@@ -35,13 +35,26 @@ class AdministradorRepo:
         except sqlite3.Error as ex:
             print(ex)
             return None
-        
+
+    
+    @classmethod
+    def obter_quantidade_administrador(cls) -> Optional[int]:
+        try:
+            with obter_conexao() as conexao:
+                cursor = conexao.cursor()
+                tupla = cursor.execute(SQL_OBTER_QUANTIDADE_ADMINISTRADOR).fetchone()
+                return int(tupla[0])
+        except sqlite3.Error as ex:
+            print(ex)
+            return None
+
     @classmethod
     def inserir_administrador_json(cls, arquivo_json: str):
+        if  AdministradorRepo.obter_quantidade_administrador() == 0:
             with open(arquivo_json, "r", encoding="utf-8") as arquivo:
-                administradores = json.load(arquivo)
-                for administrador in administradores:
-                    AdministradorRepo.inserir(Administrador(**administrador ))
+                administrador = json.load(arquivo)
+                for administrador in administrador:
+                    AdministradorRepo.inserir(Administrador(**administrador )) 
 
     @classmethod
     def obter_todos(cls) -> List[Administrador]:
