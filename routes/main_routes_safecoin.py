@@ -5,10 +5,7 @@ from fastapi.responses import HTMLResponse, JSONResponse
 
 from dtos.entrar_dto import EntrarDTO
 from util.html import ler_html
-from dtos.novo_cliente_dto import NovoClienteDTO
-from models.cliente_model import Cliente
-from repositories.cliente_repo import ClienteRepo
-from repositories.produto_repo import ProdutoRepo
+
 from util.auth import (
     conferir_senha,
     gerar_token,

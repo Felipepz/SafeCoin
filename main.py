@@ -4,20 +4,25 @@ sys.dont_write_bytecode = True
 
 from fastapi import Depends, FastAPI
 from fastapi.staticfiles import StaticFiles
-from repositories.cliente_repo import ClienteRepo
-from repositories.item_pedido_repo import ItemPedidoRepo
-from repositories.pedido_repo import PedidoRepo
-from repositories.produto_repo import ProdutoRepo
-from routes import main_routes, cliente_routes, main_routes_safecoin
+from repositories.administrador_repo import AdministradorRepo
+from repositories.acao_repo import AcaoRepo
+from repositories.corretora_repo import CorretoraRepo
+from repositories.criptomoeda_repo import CriptomoedaRepo
+from repositories.portfolio_repo import PortfolioRepo
+from repositories.transacao_repo import TransacaoRepo
+from repositories.usuario_repo import UsuarioRepo
+
+from routes import  main_routes_safecoin
+
 from util.auth import checar_permissao, middleware_autenticacao
 from util.exceptions import configurar_excecoes
 
-ProdutoRepo.criar_tabela()
-ProdutoRepo.inserir_produtos_json("sql/produtos.json")
-ClienteRepo.criar_tabela()
-ClienteRepo.inserir_clientes_json("sql/clientes.json")
-PedidoRepo.criar_tabela()
-ItemPedidoRepo.criar_tabela()
+AcaoRepo.criar_tabela()
+AcaoRepo.inserir("sql/acoes.json")
+
+AdministradorRepo.criar_tabela()
+AdministradorRepo.inserir("sql/administradores.json")
+
 
 app = FastAPI(dependencies=[Depends(checar_permissao)])
 app.mount(path="/static", app=StaticFiles(directory="static"), name="static")
