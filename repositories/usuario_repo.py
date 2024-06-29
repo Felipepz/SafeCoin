@@ -35,11 +35,24 @@ class UsuarioRepo:
             print(ex)
             return None
 
+
+    @classmethod
+    def obter_quantidade_usuario(cls) -> Optional[int]:
+        try:
+            with obter_conexao() as conexao:
+                cursor = conexao.cursor()
+                tupla = cursor.execute(SQL_OBTER_QUANTIDADE_USUARIO).fetchone()
+                return int(tupla[0])
+        except sqlite3.Error as ex:
+            print(ex)
+            return None
+
     @classmethod
     def inserir_usuario_json(cls, arquivo_json: str):
+        if  UsuarioRepo.obter_quantidade_usuario() == 0:
             with open(arquivo_json, "r", encoding="utf-8") as arquivo:
-                usuarios = json.load(arquivo)
-                for usuario in usuarios:
+                usuario = json.load(arquivo)
+                for usuario in usuario:
                     UsuarioRepo.inserir(Usuario(**usuario ))
                     
     @classmethod

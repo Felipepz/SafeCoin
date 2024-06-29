@@ -33,12 +33,32 @@ class AcaoRepo:
             return None
     
         
+    # @classmethod
+    # def inserir_acoes_json(cls, arquivo_json: str):
+    #         with open(arquivo_json, "r", encoding="utf-8") as arquivo:
+    #             acoes = json.load(arquivo)
+    #             for acao in acoes:
+    #                 AcaoRepo.inserir(Acao(**acao)) 
+    
+    
+    @classmethod
+    def obter_quantidade_acoes(cls) -> Optional[int]:
+        try:
+            with obter_conexao() as conexao:
+                cursor = conexao.cursor()
+                tupla = cursor.execute(SQL_OBTER_QUANTIDADE_ACAO).fetchone()
+                return int(tupla[0])
+        except sqlite3.Error as ex:
+            print(ex)
+            return None
+
     @classmethod
     def inserir_acoes_json(cls, arquivo_json: str):
+        if  AcaoRepo.obter_quantidade_acoes() == 0:
             with open(arquivo_json, "r", encoding="utf-8") as arquivo:
-                acoes = json.load(arquivo)
-                for acao in acoes:
-                    AcaoRepo.inserir(Acao(**acao))    
+                acao = json.load(arquivo)
+                for acao in acao:
+                    AcaoRepo.inserir(Acao(**acao ))   
     
 
 
