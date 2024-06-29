@@ -79,13 +79,15 @@ async def get_cadastro_corretora(request: Request):
         {"request": request},
     )
     
+# EXEMPLO DE ROTA PARA CADASTRAR (ROTA POST)
 @router.post("/cadastrar_corretora")
 async def post_corretora(corretora: NovoCorretoraDTO):
     print(corretora)
+    # FUNCAO EM QUE O MAPPER E O DTO DEVE ESTAR CORRETORA
     corretora_mapeado = MapperCorretora.mapear_cadastrar_novo_corretora_dto(corretora)
+    # INSERE O DTO MAPEADO NO BANCO DE DADOS, VERIFCAR SQL SE NECESSÁRIO
     corretora_inserido = CorretoraRepo.inserir(corretora_mapeado)
     return {"MSG": corretora_inserido.id}
-
 
 @router.get("/cadastro_criptomoeda")
 async def get_cadastro_criptomoeda(request: Request):
