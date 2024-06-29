@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -7,7 +8,7 @@
   <link rel="apple-touch-icon" sizes="76x76" href="../static/img/logos/criptologo.png">
   <link rel="icon" type="image/png" href="../static/img/logos/criptologo.png">
   <title>
-    Safe Coin
+    Safe Coiin
   </title>
   <!--     Fonts and icons     -->
   <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet" />
@@ -207,34 +208,49 @@
       </ul>
     </div>
   </aside>
+  
   <div class="container mt-5">
     <div class="row justify-content-center">
-        <div class="col-lg-6">
-            <div class="card bg-secondary shadow border-0">
-                <div class="card-header bg-transparent pb-5" style="color: black;">
-                    <div class="text-muted text-center mt-2 mb-3"><small>Cadastrar Nova Corretora</small></div>
-                </div>          
-                <div class="card-body px-lg-5 py-lg-5">
-                    <form role="form">
-                        <div class="form-group mb-3">
-                            <label for="nome" style="color: black;">Nome da Corretora</label>
-                            <input type="text" id="nome" name="nome" class="form-control" placeholder="Nome da corretora" required>
-                        </div>
-                        <div class="form-group mb-3">
-                            <label for="pontuacao" style="color: black;">Pontuação</label>
-                            <input type="number" id="pontuacao" name="pontuacao" step="0.1" min="0" class="form-control" placeholder="Pontuação da corretora" required>
-                        </div>
-                        <div class="text-center">
-                            <button type="submit" class="btn btn-primary my-4">Cadastrar Corretora</button>
-                        </div>
-                    </form>
-                </div>
-            </div>
+      <div class="col-lg-6">
+        <div class="card bg-secondary shadow border-0">
+          <div class="card-header bg-transparent pb-5">
+            <div class="text-muted text-center mt-2 mb-3" style="color: red;"><small>Cadastrar Nova Criptomoeda</small></div>
+          </div>
+          <div class="card-body px-lg-5 py-lg-5">
+            <form role="form">
+              <div class="form-group mb-3">
+                <label for="nome" style="color: black;">Nome da Criptomoeda</label>
+                <input type="text" id="nome" class="form-control" placeholder="Bitcoin, Ethereum, etc." required>
+              </div>
+              <div class="form-group mb-3">
+                <label for="sigla" style="color: black;">Sigla</label>
+                <input type="text" id="sigla" class="form-control" placeholder="BTC, ETH, etc." required>
+              </div>
+              <div class="form-group mb-3">
+                <label for="valor" style="color: black;">Valor</label>
+                <input type="number" id="valor" class="form-control" placeholder="Valor da Criptomoeda" required>
+              </div>
+              <div class="form-group mb-3">
+                <label for="link_api" style="color: black;">Link da API</label>
+                <input type="url" id="link_api" class="form-control" placeholder="URL da API de dados da criptomoeda" required>
+              </div>
+              <div class="form-group mb-3">
+                <label for="id_corretora" style="color: black;">ID da Corretora</label>
+                <input type="text" id="id_corretora" class="form-control" placeholder="ID da corretora onde a criptomoeda é negociada" required>
+              </div>
+              <div class="text-center">
+                <button type="submit" class="btn btn-primary my-4">Cadastrar Criptomoeda</button>
+              </div>
+            </form>
+          </div>
         </div>
+      </div>
     </div>
-</div>
+  </div>
+  
 
-
+  
+  
 
   <footer class="footer pt-3  ">
     <div class="container-fluid">
