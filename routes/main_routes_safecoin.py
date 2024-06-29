@@ -86,7 +86,7 @@ async def get_cadastro_criptomoeda(request: Request):
         {"request": request},
     )
     
-@router.get("/cadastro_trasacao")
+@router.get("/cadastro_transacao")
 async def get_cadastro_transacao(request: Request):
     return templates.TemplateResponse(
         "cadastro_transacao.html",
