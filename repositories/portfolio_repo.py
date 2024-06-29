@@ -33,11 +33,24 @@ class PortfolioRepo:
             print(ex)
             return None
 
+    
+    @classmethod
+    def obter_quantidade_portifolio(cls) -> Optional[int]:
+        try:
+            with obter_conexao() as conexao:
+                cursor = conexao.cursor()
+                tupla = cursor.execute(SQL_OBTER_QUANTIDADE_PORTFOLIO).fetchone()
+                return int(tupla[0])
+        except sqlite3.Error as ex:
+            print(ex)
+            return None
+
     @classmethod
     def inserir_portfolio_json(cls, arquivo_json: str):
+        if  PortfolioRepo.obter_quantidade_portifolio() == 0:
             with open(arquivo_json, "r", encoding="utf-8") as arquivo:
-                portfolios = json.load(arquivo)
-                for portfolio in portfolios:
+                portfolio = json.load(arquivo)
+                for portfolio in portfolio:
                     PortfolioRepo.inserir(Portfolio(**portfolio ))
                     
     @classmethod

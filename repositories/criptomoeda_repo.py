@@ -36,11 +36,24 @@ class CriptomoedaRepo:
             print(ex)
             return None
         
+    
+    @classmethod
+    def obter_quantidade_criptomoeda(cls) -> Optional[int]:
+        try:
+            with obter_conexao() as conexao:
+                cursor = conexao.cursor()
+                tupla = cursor.execute(SQL_OBTER_QUANTIDADE_CRIPTOMOEDA).fetchone()
+                return int(tupla[0])
+        except sqlite3.Error as ex:
+            print(ex)
+            return None
+
     @classmethod
     def inserir_criptomoeda_json(cls, arquivo_json: str):
+        if  CriptomoedaRepo.obter_quantidade_criptomoeda() == 0:
             with open(arquivo_json, "r", encoding="utf-8") as arquivo:
-                criptomoedas = json.load(arquivo)
-                for criptomoeda in criptomoedas:
+                criptomoeda = json.load(arquivo)
+                for criptomoeda in criptomoeda:
                     CriptomoedaRepo.inserir(Criptomoeda(**criptomoeda ))
 
     @classmethod
