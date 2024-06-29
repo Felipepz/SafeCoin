@@ -1,52 +1,47 @@
 [
     {
-        "id": 1,
         "id_criptomoeda": 1,
         "id_acao": 1,
         "id_usuario": 1,
         "id_portfolio": 1,
-        "quantidade": 10,
-        "valor_unitario": 300000.0,
-        "valor_total": 0
+        "quantidade": 1,
+        "valor_unitario": 30000.0,
+        "valor_total": 0.0
     },
     {
-        "id": 2,
         "id_criptomoeda": 2,
-        "id_acao": 2,
-        "id_usuario": 2,
+        "id_acao": 3,
+        "id_usuario": 1,
         "id_portfolio": 2,
-        "quantidade": 5,
-        "valor_unitario": 10000.0,
-        "valor_total": 0
+        "quantidade": 2,
+        "valor_unitario": 15000.0,
+        "valor_total": 30000.0
     },
     {
-        "id": 3,
-        "id_criptomoeda": 3,
-        "id_acao": 3,
+        "id_criptomoeda": 1,
+        "id_acao": 2,
         "id_usuario": 3,
         "id_portfolio": 3,
-        "quantidade": 20,
-        "valor_unitario": 10.0,
-        "valor_total": 0
+        "quantidade": 3,
+        "valor_unitario": 20000.0,
+        "valor_total": 60000.0
     },
     {
-        "id": 4,
-        "id_criptomoeda": 4,
-        "id_acao": 4,
-        "id_usuario": 4,
-        "id_portfolio": 4,
-        "quantidade": 15,
-        "valor_unitario": 2250.0,
-        "valor_total": 0
+        "id_criptomoeda": 3,
+        "id_acao": 1,
+        "id_usuario": 2,
+        "id_portfolio": 1,
+        "quantidade": 4,
+        "valor_unitario": 18000.0,
+        "valor_total": 72000.0
     },
     {
-        "id": 5,
-        "id_criptomoeda": 5,
-        "id_acao": 5,
-        "id_usuario": 5,
-        "id_portfolio": 5,
-        "quantidade": 8,
-        "valor_unitario": 9.6,
-        "valor_total": 0
+        "id_criptomoeda": 2,
+        "id_acao": 2,
+        "id_usuario": 3,
+        "id_portfolio": 2,
+        "quantidade": 2,
+        "valor_unitario": 22000.0,
+        "valor_total": 44000.0
     }
 ]

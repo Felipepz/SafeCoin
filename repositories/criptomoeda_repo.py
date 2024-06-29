@@ -1,3 +1,4 @@
+import json
 import sqlite3
 from typing import List, Optional
 from models.criptomoeda_model import Criptomoeda
@@ -34,6 +35,13 @@ class CriptomoedaRepo:
         except sqlite3.Error as ex:
             print(ex)
             return None
+        
+    @classmethod
+    def inserir_criptomoeda_json(cls, arquivo_json: str):
+            with open(arquivo_json, "r", encoding="utf-8") as arquivo:
+                criptomoedas = json.load(arquivo)
+                for criptomoeda in criptomoedas:
+                    CriptomoedaRepo.inserir(Criptomoeda(**criptomoeda ))
 
     @classmethod
     def obter_todos(cls) -> List[Criptomoeda]:

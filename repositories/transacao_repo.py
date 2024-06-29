@@ -1,3 +1,4 @@
+import json
 import sqlite3
 from typing import List, Optional
 from models.transacao_model import Transacao
@@ -36,6 +37,13 @@ class TransacaoRepo:
         except sqlite3.Error as ex:
             print(ex)
             return None
+        
+    @classmethod
+    def inserir_transacao_json(cls, arquivo_json: str):
+            with open(arquivo_json, "r", encoding="utf-8") as arquivo:
+                transacoes = json.load(arquivo)
+                for transacao in transacoes:
+                    TransacaoRepo.inserir(Transacao(**transacao ))
 
     @classmethod
     def obter_todos(cls) -> List[Transacao]:

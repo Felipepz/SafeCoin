@@ -1,3 +1,4 @@
+import json
 import sqlite3
 from typing import List, Optional
 from models.administrador_model import Administrador
@@ -34,6 +35,13 @@ class AdministradorRepo:
         except sqlite3.Error as ex:
             print(ex)
             return None
+        
+    @classmethod
+    def inserir_administrador_json(cls, arquivo_json: str):
+            with open(arquivo_json, "r", encoding="utf-8") as arquivo:
+                administradores = json.load(arquivo)
+                for administrador in administradores:
+                    AdministradorRepo.inserir(Administrador(**administrador ))
 
     @classmethod
     def obter_todos(cls) -> List[Administrador]:

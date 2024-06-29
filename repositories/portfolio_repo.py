@@ -1,3 +1,4 @@
+import json
 import sqlite3
 from typing import List, Optional
 from models.portfolio_model import Portfolio
@@ -32,6 +33,13 @@ class PortfolioRepo:
             print(ex)
             return None
 
+    @classmethod
+    def inserir_portfolio_json(cls, arquivo_json: str):
+            with open(arquivo_json, "r", encoding="utf-8") as arquivo:
+                portfolios = json.load(arquivo)
+                for portfolio in portfolios:
+                    PortfolioRepo.inserir(Portfolio(**portfolio ))
+                    
     @classmethod
     def obter_todos(cls) -> List[Portfolio]:
         try:

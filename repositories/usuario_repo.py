@@ -1,3 +1,4 @@
+import json
 import sqlite3
 from typing import List, Optional
 from models.usuario_model import Usuario
@@ -34,6 +35,13 @@ class UsuarioRepo:
             print(ex)
             return None
 
+    @classmethod
+    def inserir_usuario_json(cls, arquivo_json: str):
+            with open(arquivo_json, "r", encoding="utf-8") as arquivo:
+                usuarios = json.load(arquivo)
+                for usuario in usuarios:
+                    UsuarioRepo.inserir(Usuario(**usuario ))
+                    
     @classmethod
     def obter_todos(cls) -> List[Usuario]:
         try:

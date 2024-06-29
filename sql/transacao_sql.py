@@ -11,14 +11,13 @@ SQL_CRIAR_TABELA_TRANSACAO = """
         FOREIGN KEY (id_criptomoeda) REFERENCES criptomoeda(id),
         FOREIGN KEY (id_acao) REFERENCES acao(id),
         FOREIGN KEY (id_usuario) REFERENCES usuario(id),
-        FOREIGN KEY (id_portfolio) REFERENCES portfolio(id),
-        # FOREIGN KEY (valor_unitario) REFERENCES criptomoeda(valor)
+        FOREIGN KEY (id_portfolio) REFERENCES portfolio(id)
     )
 """
 
 SQL_INSERIR_TRANSACAO = """
-    INSERT INTO transacao(id_criptomoeda, id_acao, id_usuario, id_portfolio, quantidade, valor_unitario)
-    VALUES (?, ?, ?, ?, ?, ?)
+    INSERT INTO transacao(id_criptomoeda, id_acao, id_usuario, id_portfolio, quantidade, valor_unitario, valor_unitario)
+    VALUES (?, ?, ?, ?, ?, ?, ?)
 """
 
 SQL_OBTER_TODOS_TRANSACAO = """

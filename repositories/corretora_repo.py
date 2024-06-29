@@ -1,3 +1,4 @@
+import json
 import sqlite3
 from typing import List, Optional
 from models.corretora_model import Corretora
@@ -32,6 +33,13 @@ class CorretoraRepo:
             print(ex)
             return None
 
+    @classmethod
+    def inserir_corretora_json(cls, arquivo_json: str):
+            with open(arquivo_json, "r", encoding="utf-8") as arquivo:
+                corretoras = json.load(arquivo)
+                for corretora in corretoras:
+                    CorretoraRepo.inserir(Corretora(**corretora ))
+                    
     @classmethod
     def obter_todos(cls) -> List[Corretora]:
         try:
