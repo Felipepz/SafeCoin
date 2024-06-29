@@ -18,16 +18,14 @@ from util.auth import checar_permissao, middleware_autenticacao
 from util.exceptions import configurar_excecoes
 
 AcaoRepo.criar_tabela()
-AcaoRepo.inserir("sql/acoes.json")
+AcaoRepo.inserir_acoes_json("sql/acoes.json")
 
-AdministradorRepo.criar_tabela()
-AdministradorRepo.inserir("sql/administradores.json")
-
+# AdministradorRepo.criar_tabela()
+# AdministradorRepo.inserir("sql/administradores.json")
 
 app = FastAPI(dependencies=[Depends(checar_permissao)])
 app.mount(path="/static", app=StaticFiles(directory="static"), name="static")
 app.middleware(middleware_type="http")(middleware_autenticacao)
 configurar_excecoes(app)
-# app.include_router(main_routes.router)
-# app.include_router(cliente_routes.router)
+
 app.include_router(main_routes_safecoin.router)

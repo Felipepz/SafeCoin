@@ -1,3 +1,4 @@
+import json
 import sqlite3
 from typing import List, Optional
 from models.acao_model import Acao
@@ -30,6 +31,16 @@ class AcaoRepo:
         except sqlite3.Error as ex:
             print(ex)
             return None
+    
+        
+    @classmethod
+    def inserir_acoes_json(cls, arquivo_json: str):
+            with open(arquivo_json, "r", encoding="utf-8") as arquivo:
+                acoes = json.load(arquivo)
+                for acao in acoes:
+                    AcaoRepo.inserir(Acao(**acao))    
+    
+
 
     @classmethod
     def obter_todos(cls) -> List[Acao]:
@@ -42,6 +53,9 @@ class AcaoRepo:
         except sqlite3.Error as ex:
             print(ex)
             return []
+
+        
+        
 
     @classmethod
     def alterar(cls, acao: Acao) -> bool:
