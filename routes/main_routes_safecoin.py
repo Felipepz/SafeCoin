@@ -5,8 +5,11 @@ from fastapi.responses import HTMLResponse, JSONResponse
 
 from dtos.entrar_dto import EntrarDTO
 from dtos.novo_corretora_dto import NovoCorretoraDTO
+from dtos.novo_usuario_dto import NovoUsuarioDTO
 from mapper.mapper_corretora import MapperCorretora
+from mapper.mapper_usuario import MapperUsuario
 from repositories.corretora_repo import CorretoraRepo
+from repositories.usuario_repo import UsuarioRepo
 from util.html import ler_html
 
 from util.auth import (
@@ -64,6 +67,17 @@ async def get_cadastro_usuario(request: Request):
         "cadastro_usuario.html",
         {"request": request},
     )
+    
+# EXEMPLO DE ROTA PARA CADASTRAR (ROTA POST)
+@router.post("/cadastrar_usuario")
+async def post_usuario(usuario: NovoUsuarioDTO):
+    print(usuario)
+    # FUNCAO EM QUE O MAPPER E O DTO DEVE ESTAR CORRETORA
+    usuario_mapeado = MapperUsuario.mapear_cadastrar_novo_usuario_dto(usuario)
+    # INSERE O DTO MAPEADO NO BANCO DE DADOS, VERIFCAR SQL SE NECESSÁRIO
+    usuario_inserido = UsuarioRepo.inserir(usuario_mapeado)
+    return {"MSG": usuario_inserido.id}   
+
 
 @router.get("/cadastro_administrador")
 async def get_cadastro_administrador(request: Request):
