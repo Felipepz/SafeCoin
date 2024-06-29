@@ -221,66 +221,106 @@
     </div>
   </nav>
 
-<div class="container mt-5">
-  <div class="row justify-content-center">
-    <div class="card col-xl-7 col-lg-5 col-md-7 mx-auto">
-      <div class="col-lg-12">
-        <div class="card-header pb-0 p-3">
-          <div class="card-header text-center pt-4">
-            <h5>Cadastrar Nova Corretora</h5>
-          </div>
-          <div class="card-body px-lg-5 py-lg-5">
-            <form role="form text-left">
-              <div class="mb-3">
-                <label class="text-center">Nome da Corretora</label>
-                <input type="text" class="form-control" placeholder="Nome da Corretora" aria-label="Nome da Corretora" aria-describedby="email-addon" required>
+  <body>
+  
+    <!-- FORMULÁRIO -->
+    <div class="container mt-5">
+      <div class="row justify-content-center">
+        <div class="card col-xl-7 col-lg-5 col-md-7 mx-auto">
+          <div class="col-lg-12">
+            <div class="card-header pb-0 p-3">
+              <div class="card-header text-center pt-4">
+                <h5>Cadastrar Nova Corretora</h5>
               </div>
-              <div class="form-group mb-3">
-                <label class="text-center">Pontuação</label>
-                <input type="text" id="sigla" class="form-control" placeholder="Pontuação" required>
+              <div class="card-body px-lg-5 py-lg-5">
+                <form id="corretoraForm" role="form text-left">
+                  <div class="mb-3">
+                    <label class="text-center">Nome da Corretora</label>
+                    <input type="text" class="form-control" id="nome" placeholder="Nome da Corretora" aria-label="Nome da Corretora" aria-describedby="email-addon" required>
+                  </div>
+                  <div class="form-group mb-3">
+                    <label class="text-center">Pontuação</label>
+                    <input type="text" class="form-control" id="pontuacao" placeholder="Pontuação" required>
+                  </div>
+                  <div class="text-center">
+                    <button type="button" class="btn bg-gradient-dark w-100 my-4 mb-2" onclick="enviarFormulario()">Cadastrar Corretora</button>
+                  </div>
+                </form>
+                <div id="mensagem"></div>
               </div>
-              <div class="text-center">
-                <button type="submit" class="btn bg-gradient-dark w-100 my-4 mb-2">Cadastrar Corretora</button>
-              </div>
-            </form>
+            </div>
           </div>
         </div>
       </div>
     </div>
-  </div>
-</div>
+    <!-- JS PARA ENVIAR O POST -->
+    <script>
+      function enviarFormulario() {
+        const nome = document.getElementById('nome').value;
+        const pontuacao = document.getElementById('pontuacao').value;
+
+        const dados = {
+          nome: nome,
+          pontuacao: pontuacao
+        };
+
+        fetch('/cadastrar_corretora', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(dados),
+        })
+        .then(response => {
+          if (response.ok) {
+            return response.json();
+          } else {
+            throw new Error('Erro ao enviar os dados');
+          }
+        })
+        .then(data => {
+          document.getElementById('mensagem').innerText = 'Corretora cadastrada com sucesso! ID: ' + data.MSG;
+        })
+        .catch(error => {
+          document.getElementById('mensagem').innerText = 'Erro: ' + error.message;
+        });
+      }
+    </script>
+
+    
+    
 
 
 
-<footer>
-  <div class="row">
-    <div class="col-8 mx-auto text-center p-4">
-      <p class="mb-0 text-secondary">
-        Copyright © <script>
-          document.write(new Date().getFullYear())
-        </script> SafeCoin.
-      </p>
+  <footer>
+    <div class="row">
+      <div class="col-8 mx-auto text-center p-4">
+        <p class="mb-0 text-secondary">
+          Copyright © <script>
+            document.write(new Date().getFullYear())
+          </script> SafeCoin.
+        </p>
+      </div>
     </div>
   </div>
-</div>
-</footer>
+  </footer>
 
-  <!--   Core JS Files   -->
-  <script src="../static/js/core/popper.min.js"></script>
-  <script src="../static/js/core/bootstrap.min.js"></script>
-  <script src="../static/js/plugins/perfect-scrollbar.min.js"></script>
-  <script src="../static/js/plugins/smooth-scrollbar.min.js"></script>
-  <script>
-    var win = navigator.platform.indexOf('Win') > -1;
-    if (win && document.querySelector('#sidenav-scrollbar')) {
-      var options = {
-        damping: '0.5'
+    <!--   Core JS Files   -->
+    <script src="../static/js/core/popper.min.js"></script>
+    <script src="../static/js/core/bootstrap.min.js"></script>
+    <script src="../static/js/plugins/perfect-scrollbar.min.js"></script>
+    <script src="../static/js/plugins/smooth-scrollbar.min.js"></script>
+    <script>
+      var win = navigator.platform.indexOf('Win') > -1;
+      if (win && document.querySelector('#sidenav-scrollbar')) {
+        var options = {
+          damping: '0.5'
+        }
+        Scrollbar.init(document.querySelector('#sidenav-scrollbar'), options);
       }
-      Scrollbar.init(document.querySelector('#sidenav-scrollbar'), options);
-    }
-  </script>
-  <script async defer src="https://buttons.github.io/buttons.js"></script>
-  <script src="../static/js/soft-ui-dashboard.min.js?v=1.0.7"></script>
-</body>
+    </script>
+    <script async defer src="https://buttons.github.io/buttons.js"></script>
+    <script src="../static/js/soft-ui-dashboard.min.js?v=1.0.7"></script>
+  </body>
 
 </html>
