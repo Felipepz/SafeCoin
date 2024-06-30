@@ -33,57 +33,100 @@
     </div>
   </nav>
   <!-- End Navbar -->
-  <main class="main-content  mt-0">
-    <section class="min-vh-100 mb-8">
-      <div class="page-header align-items-start min-vh-50 pt-5 pb-11 m-3 border-radius-lg" style="background-image: url('../static/img/curved-images/cripto3.jpeg');">
-        <span class="mask bg-gradient-dark opacity-6"></span>
+    <main class="main-content mt-0">
+      <section class="min-vh-100 mb-8">
+        <div class="page-header align-items-start min-vh-50 pt-5 pb-11 m-3 border-radius-lg" style="background-image: url('../static/img/curved-images/cripto3.jpeg');">
+          <span class="mask bg-gradient-dark opacity-6"></span>
+          <div class="container">
+            <div class="row justify-content-center">
+              <div class="col-lg-5 text-center mx-auto">
+                <h1 class="text-white mb-2 mt-5">Bem vindo ao SafeCoin</h1>
+                <p class="text-lead text-white">Acompanhe a sua carteira de criptomoedas.</p>
+              </div>
+            </div>
+          </div>
+        </div>
         <div class="container">
-          <div class="row justify-content-center">
-            <div class="col-lg-5 text-center mx-auto">
-              <h1 class="text-white mb-2 mt-5">Bem vindo ao SafeCoin</h1>
-              <p class="text-lead text-white">Acompanhe a sua carteira de cripmoedas.</p>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="container">
-        <div class="row mt-lg-n10 mt-md-n11 mt-n10">
-          <div class="col-xl-4 col-lg-5 col-md-7 mx-auto">
-            <div class="card z-index-0">
-              <div class="card-header text-center pt-4">
-                <h5>Registre-se aqui</h5>
-                <h6>Administrador</h6>
-              </div>
-              
-              <div class="card-body">
-                <form role="form text-left">
-                  <div class="mb-3">
-                    <input type="text" class="form-control" placeholder="Nome" aria-label="Nome" aria-describedby="email-addon">
-                  </div>
-                  <div class="mb-3">
-                    <input type="text" class="form-control" placeholder="CPF" aria-label="CPF" aria-describedby="email-addon">
-                  </div>
-                  <div class="mb-3">
-                    <input type="email" class="form-control" placeholder="Email" aria-label="Email" aria-describedby="email-addon">
-                  </div>
-                  <div class="mb-3">
-                    <input type="senha" class="form-control" placeholder="Senha" aria-label="Senha" aria-describedby="password-addon">
-                  </div>
-                  <div class="mb-3">
-                    <input type="date" class="form-control" placeholder="Data de Nascimento" aria-label="data" aria-describedby="email-addon">
-                  </div>
-                  <div class="text-center">
-                    <button type="button" class="btn bg-gradient-dark w-100 my-4 mb-2">Inscrever-se</button>
-                  </div>
-                  <p class="text-sm mt-3 mb-0">Já possui uma conta? <a href="/login" class="text-dark font-weight-bolder">Entrar</a></p>
-                </form>
+          <div class="row mt-lg-n10 mt-md-n11 mt-n10">
+            <div class="col-xl-4 col-lg-5 col-md-7 mx-auto">
+              <div class="card z-index-0">
+                <div class="card-header text-center pt-4">
+                  <h5>Registre-se aqui</h5>
+                  <h6>Administrador</h6>
+                </div>
+                <div class="card-body">
+                  <form role="form text-left" onsubmit="enviarFormulario(event)">
+                    <div class="mb-3">
+                      <input type="text" class="form-control" id="nome" placeholder="Nome" aria-label="Nome" aria-describedby="nome-addon">
+                    </div>
+                    <div class="mb-3">
+                      <input type="text" class="form-control" id="cpf" placeholder="CPF" aria-label="CPF" aria-describedby="cpf-addon">
+                    </div>
+                    <div class="mb-3">
+                      <input type="date" class="form-control" id="data_nascimento" placeholder="Data de Nascimento" aria-label="Data de Nascimento" aria-describedby="data-nascimento-addon">
+                    </div>
+                    <div class="mb-3">
+                      <input type="email" class="form-control" id="email" placeholder="Email" aria-label="Email" aria-describedby="email-addon">
+                    </div>
+                    <div class="mb-3">
+                      <input type="password" class="form-control" id="senha" placeholder="Senha" aria-label="Senha" aria-describedby="senha-addon">
+                    </div>
+                    <div class="text-center">
+                      <button type="submit" class="btn bg-gradient-dark w-100 my-4 mb-2">Inscrever-se</button>
+                    </div>
+                    <p class="text-sm mt-3 mb-0">Já possui uma conta? <a href="/login" class="text-dark font-weight-bolder">Entrar</a></p>
+                  </form>
+                  <div id="mensagem" class="text-center"></div>
+                </div>
               </div>
             </div>
           </div>
         </div>
-      </div>
+      </section>
+    </main>
+    
+    <script>
+      function enviarFormulario(event) {
+        event.preventDefault();
+    
+        const nome = document.getElementById('nome').value;
+        const cpf = document.getElementById('cpf').value;
+        const data_nascimento = document.getElementById('data_nascimento').value;
+        const email = document.getElementById('email').value;
+        const senha = document.getElementById('senha').value;
+    
+        const dados = {
+          nome: nome,
+          cpf: cpf,
+          data_nascimento: data_nascimento,
+          email: email,
+          senha: senha
+        };
+    
+        fetch('/cadastro_administrador', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(dados),
+        })
+        .then(response => {
+          if (response.ok) {
+            return response.json();
+          } else {
+            throw new Error('Erro ao enviar os dados');
+          }
+        })
+        .then(data => {
+          document.getElementById('mensagem').innerText = 'Corretora cadastrada com sucesso! ID: ' + data.MSG;
+        })
+        .catch(error => {
+          document.getElementById('mensagem').innerText = 'Erro: ' + error.message;
+        });
+      }
+    </script>
+  
     </section>
-    <!-- -------- START FOOTER 3 w/ COMPANY DESCRIPTION WITH LINKS & SOCIAL ICONS & COPYRIGHT ------- -->
     <footer class="footer pt-3  ">
       <div class="container-fluid">
         <div class="row align-items-center justify-content-lg-between">
@@ -95,8 +138,8 @@
                 <a href="" class="nav-link text-muted" target="_blank">SafeCoin</a>
               </li>
               <li class="nav-item">
-                <a href="" target="_blank">Sobre Nós</a>
-              </li>
+                <a href="/sobre" target="_self">Sobre Nós</a>
+              </li>              
               <li class="nav-item">
                 <a href="" class="nav-link text-muted" target="_blank">Blog</a>
               </li>
