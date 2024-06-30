@@ -5,12 +5,15 @@ from fastapi.responses import HTMLResponse, JSONResponse
 
 from dtos.entrar_dto import EntrarDTO
 from dtos.novo_corretora_dto import NovoCorretoraDTO
+from dtos.novo_criptomoeda_dto import NovoCriptomoedaDTO
 from dtos.novo_portfolio_dto import NovoPortfolioDTO
 from mapper.mapper_corretora import MapperCorretora
+from mapper.mapper_criptomoeda import MapperCriptomoeda
 from mapper.mapper_portfolio import MapperPortfolio
 from repositories.corretora_repo import CorretoraRepo
 from dtos.novo_usuario_dto import NovoUsuarioDTO
 from mapper.mapper_usuario import MapperUsuario
+from repositories.criptomoeda_repo import CriptomoedaRepo
 from repositories.portfolio_repo import PortfolioRepo
 from repositories.usuario_repo import UsuarioRepo 
 from dtos.novo_transacao_dto import NovoTransacaoDTO
@@ -149,6 +152,16 @@ async def get_cadastro_criptomoeda(request: Request):
         {"request": request},
     )
     
+# EXEMPLO DE ROTA PARA CADASTRAR (ROTA POST)
+@router.post("/cadastrar_criptomoeda")
+async def post_criptomoeda(criptomoeda: NovoCriptomoedaDTO):
+    # FUNCAO EM QUE O MAPPER E O DTO DEVE ESTAR CORRETORA
+    criptomoeda_mapeado = MapperCriptomoeda.mapear_cadastrar_novo_criptomoeda_dto(criptomoeda)
+    # INSERE O DTO MAPEADO NO BANCO DE DADOS, VERIFCAR SQL SE NECESSÁRIO
+    criptomoeda_inserido = CriptomoedaRepo.inserir(criptomoeda_mapeado)
+    print(criptomoeda)
+    return {"MSG": criptomoeda_inserido.id}
+
 @router.get("/cadastro_transacao")
 async def get_cadastro_transacao(request: Request):
     return templates.TemplateResponse(
