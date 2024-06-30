@@ -141,4 +141,11 @@ async def post_transacao(transacao: NovoTransacaoDTO):
     transacao_mapeado = MapperTransacao.mapear_cadastrar_novo_transacao_dto(transacao)
     # INSERE O DTO MAPEADO NO BANCO DE DADOS, VERIFCAR SQL SE NECESSÁRIO
     transacao_inserido = TransacaoRepo.inserir(transacao_mapeado)
-    return {"MSG": transacao_inserido.id}
+    return {"MSG": transacao_inserido.id} 
+
+@router.get("/sobre")
+async def get_sobre(request: Request):
+    return templates.TemplateResponse(
+        "sobre.html",
+        {"request": request},
+    )
