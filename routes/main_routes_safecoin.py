@@ -9,7 +9,12 @@ from dtos.novo_usuario_dto import NovoUsuarioDTO
 from mapper.mapper_corretora import MapperCorretora
 from mapper.mapper_usuario import MapperUsuario
 from repositories.corretora_repo import CorretoraRepo
-from repositories.usuario_repo import UsuarioRepo
+from repositories.usuario_repo import UsuarioRepo 
+from dtos.novo_transacao_dto import NovoTransacaoDTO
+from mapper.mapper_transacao import MapperTransacao
+from repositories.transacao_repo import TransacaoRepo
+
+
 from util.html import ler_html
 
 from util.auth import (
