@@ -152,6 +152,13 @@ async def get_cadastro_criptomoeda(request: Request):
         {"request": request},
     )
     
+@router.get("/api")
+async def get_api(request: Request):
+    return templates.TemplateResponse(
+        "dashboard.html",
+        {"request": request},
+    )
+    
 # EXEMPLO DE ROTA PARA CADASTRAR (ROTA POST)
 @router.post("/cadastrar_criptomoeda")
 async def post_criptomoeda(criptomoeda: NovoCriptomoedaDTO):
