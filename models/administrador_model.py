@@ -7,7 +7,7 @@ class Administrador:
     id: Optional[int] = None
     nome: Optional[str] = None
     cpf: Optional[str] = None
-    data_nascimento: Optional[date] = None
     email: Optional[str] = None
     senha: Optional[str] = None
+    data_nascimento: Optional[date] = None
     token: Optional[str] = None
