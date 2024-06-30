@@ -5,10 +5,13 @@ from fastapi.responses import HTMLResponse, JSONResponse
 
 from dtos.entrar_dto import EntrarDTO
 from dtos.novo_corretora_dto import NovoCorretoraDTO
+from dtos.novo_portfolio_dto import NovoPortfolioDTO
 from mapper.mapper_corretora import MapperCorretora
+from mapper.mapper_portfolio import MapperPortfolio
 from repositories.corretora_repo import CorretoraRepo
 from dtos.novo_usuario_dto import NovoUsuarioDTO
 from mapper.mapper_usuario import MapperUsuario
+from repositories.portfolio_repo import PortfolioRepo
 from repositories.usuario_repo import UsuarioRepo 
 from dtos.novo_transacao_dto import NovoTransacaoDTO
 from mapper.mapper_transacao import MapperTransacao
@@ -47,6 +50,25 @@ async def get_transacoes(request: Request):
         "transacoes.html",
         {"request": request},
     )
+    
+
+@router.get("/cadastro_portfolio")
+async def get_cadastro_portfolio(request: Request):
+    return templates.TemplateResponse(
+        "cadastro_portfolio.html",
+        {"request": request},
+    )
+    
+# EXEMPLO DE ROTA PARA CADASTRAR (ROTA POST)
+@router.post("/cadastrar_portfolio")
+async def post_portfolio(portfolio: NovoPortfolioDTO):
+    print(portfolio)
+    # FUNCAO EM QUE O MAPPER E O DTO DEVE ESTAR CORRETORA
+    portfolio_mapeado = MapperPortfolio.mapear_cadastrar_novo_portfolio_dto(portfolio)
+    # INSERE O DTO MAPEADO NO BANCO DE DADOS, VERIFCAR SQL SE NECESSÁRIO
+    portfolio_inserido = PortfolioRepo.inserir(portfolio_mapeado)
+    return {"MSG": portfolio_inserido.id}
+    
 
 @router.get("/portfolio")
 async def get_portfolio(request: Request):
