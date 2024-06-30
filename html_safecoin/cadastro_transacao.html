@@ -258,9 +258,10 @@
                   <label class="text-center">Valor Unitário</label>
                   <input type="text" id="id_valor_unitario" class="form-control" placeholder="Valor Unitário" required>
                 </div>
+                <!-- ver valor total -->
                 <div class="form-group mb-3">
                   <label class="text-center">Valor Total</label>
-                  <input type="text" id="id_valor_total" class="form-control" placeholder="Valor Total" required>
+                  <input type="text"  class="form-control" placeholder="Valor Total" required>
                 </div>
                 <div class="text-center">
                   <button type="submit" class="btn bg-gradient-dark w-100 my-4 mb-2">Cadastrar Transação</button>
@@ -282,7 +283,6 @@
       const id_portfolio = document.getElementById('id_portfolio').value;
       const quantidade = document.getElementById('quantidade').value;
       const valor_unitario = document.getElementById('valor_unitario').value;
-      const valor_total = document.getElementById('valor_total').value;
 
 
       const dados = {
@@ -291,8 +291,7 @@
         id_usuario: id_usuario,
         id_portfolio: id_portfolio,
         quantidade: quantidade,
-        valor_unitario: valor_unitario,
-        valor_total: valor_total
+        valor_unitario: valor_unitario
       };
 
       fetch('/cadastro_transacao', {

@@ -13,7 +13,7 @@ class MapperTransacao():
                 id_portfolio=dto.id_portfolio,
                 quantidade=dto.quantidade,
                 valor_unitario=dto.valor_unitario,
-                valor_total=dto.valor_total,
+                valor_total=dto.valor_total
 
             )
         
