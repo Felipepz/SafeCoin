@@ -21,13 +21,7 @@ class CriptomoedaRepo:
                 cursor = conexao.cursor()
                 cursor.execute(
                     SQL_INSERIR_CRIPTOMOEDA,
-                    (
-                        criptomoeda.nome,
-                        criptomoeda.sigla,
-                        criptomoeda.valor,
-                        criptomoeda.link_api,
-                        criptomoeda.id_corretora,
-                    )
+                    (criptomoeda.token_criptomoeda,)
                 )
                 if cursor.rowcount > 0:
                     criptomoeda.id = cursor.lastrowid
@@ -36,7 +30,6 @@ class CriptomoedaRepo:
             print(ex)
             return None
         
-    
     @classmethod
     def obter_quantidade_criptomoeda(cls) -> Optional[int]:
         try:
@@ -50,11 +43,11 @@ class CriptomoedaRepo:
 
     @classmethod
     def inserir_criptomoeda_json(cls, arquivo_json: str):
-        if  CriptomoedaRepo.obter_quantidade_criptomoeda() == 0:
+        if CriptomoedaRepo.obter_quantidade_criptomoeda() == 0:
             with open(arquivo_json, "r", encoding="utf-8") as arquivo:
-                criptomoeda = json.load(arquivo)
-                for criptomoeda in criptomoeda:
-                    CriptomoedaRepo.inserir(Criptomoeda(**criptomoeda ))
+                criptomoedas = json.load(arquivo)
+                for criptomoeda in criptomoedas:
+                    CriptomoedaRepo.inserir(Criptomoeda(**criptomoeda))
 
     @classmethod
     def obter_todos(cls) -> List[Criptomoeda]:
@@ -76,12 +69,8 @@ class CriptomoedaRepo:
                 cursor.execute(
                     SQL_ALTERAR_CRIPTOMOEDA,
                     (
-                        criptomoeda.nome,
-                        criptomoeda.sigla,
-                        criptomoeda.valor,
-                        criptomoeda.link_api,
-                        criptomoeda.id_corretora,
-                        criptomoeda.id,
+                        criptomoeda.token_criptomoeda,
+                        criptomoeda.id
                     )
                 )
                 return cursor.rowcount > 0
@@ -106,8 +95,10 @@ class CriptomoedaRepo:
             with obter_conexao() as conexao:
                 cursor = conexao.cursor()
                 tupla = cursor.execute(SQL_OBTER_POR_ID, (id,)).fetchone()
-                criptomoeda = Criptomoeda(*tupla)
-                return criptomoeda
+                if tupla:
+                    criptomoeda = Criptomoeda(*tupla)
+                    return criptomoeda
+                return None
         except sqlite3.Error as ex:
             print(ex)
             return None

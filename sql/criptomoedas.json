@@ -1,42 +1,28 @@
 [
     {
         "id": 1,
-        "nome": "Bitcoin",
-        "sigla": "BTC",
-        "valor": 30000.0,
-        "link_api": "https://api.bitcoin.com",
-        "id_corretora": 1
+        "token_criptomoeda": "0xdAC17F958D2ee523a2206206994597C13D831ec7"
+
     },
     {
         "id": 2,
-        "nome": "Ethereum",
-        "sigla": "ETH",
-        "valor": 2000.0,
-        "link_api": "https://api.ethereum.com",
-        "id_corretora": 2
+        "token_criptomoeda": "0xB8c77482e45F1F44dE1745F52C74426C631bDD52"
+
     },
     {
         "id": 3,
-        "nome": "Ripple",
-        "sigla": "XRP",
-        "valor": 0.5,
-        "link_api": "https://api.ripple.com",
-        "id_corretora": 3
+        "token_criptomoeda": "0x95aD61b0a150d79219dCF64E1E6Cc01f0B64C4cE"
+
     },
+
     {
         "id": 4,
-        "nome": "Litecoin",
-        "sigla": "LTC",
-        "valor": 150.0,
-        "link_api": "https://api.litecoin.com",
-        "id_corretora": 4
+        "token_criptomoeda": "0x2260FAC5E5542a773Aa44fBCfeDf7C193bc2C599"
+
     },
     {
         "id": 5,
-        "nome": "Cardano",
-        "sigla": "ADA",
-        "valor": 1.2,
-        "link_api": "https://api.cardano.com",
-        "id_corretora": 5
+        "token_criptomoeda": "0xCd5fE23C85820F7B72D0926FC9b05b43E359b7ee"
+
     }
 ]

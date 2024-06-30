@@ -1,29 +1,24 @@
 SQL_CRIAR_TABELA_CRIPTOMOEDA = """
     CREATE TABLE IF NOT EXISTS criptomoeda (
         id INTEGER PRIMARY KEY AUTOINCREMENT,
-        nome TEXT NOT NULL,
-        sigla TEXT NOT NULL,
-        valor FLOAT NOT NULL,
-        link_api TEXT NOT NULL,
-        id_corretora INTEGER NOT NULL,
-        FOREIGN KEY (id_corretora) REFERENCES corretora(id)
+        token_criptomoeda TEXT NOT NULL
     )
 """
 
 SQL_INSERIR_CRIPTOMOEDA = """
-    INSERT INTO criptomoeda(nome, sigla, valor, link_api, id_corretora)
-    VALUES (?, ?, ?, ?, ?)
+    INSERT INTO criptomoeda(token_criptomoeda)
+    VALUES (?)
 """
 
 SQL_OBTER_TODOS_CRIPTOMOEDA = """
-    SELECT id, nome, sigla, valor, link_api, id_corretora
+    SELECT id, token_criptomoeda
     FROM criptomoeda
-    ORDER BY nome
+    ORDER BY token_criptomoeda
 """
 
 SQL_ALTERAR_CRIPTOMOEDA = """
     UPDATE criptomoeda
-    SET nome=?, sigla=?, valor=?, link_api=?, id_corretora=?
+    SET token_criptomoeda=?
     WHERE id=?
 """
 
@@ -33,7 +28,7 @@ SQL_EXCLUIR_CRIPTOMOEDA = """
 """
 
 SQL_OBTER_POR_ID = """
-    SELECT id, nome, sigla, valor, link_api, id_corretora
+    SELECT id, token_criptomoeda
     FROM criptomoeda
     WHERE id=?
 """
@@ -43,14 +38,14 @@ SQL_OBTER_QUANTIDADE_CRIPTOMOEDA = """
 """
 
 SQL_OBTER_BUSCA_CRIPTOMOEDA = """
-    SELECT id, nome, sigla, valor, link_api, id_corretora
+    SELECT id, token_criptomoeda
     FROM criptomoeda
-    WHERE nome LIKE ? OR sigla LIKE ?
-    ORDER BY nome
+    WHERE token_criptomoeda LIKE ?
+    ORDER BY token_criptomoeda
     LIMIT ? OFFSET ?
 """
 
 SQL_OBTER_QUANTIDADE_BUSCA_CRIPTOMOEDA = """
     SELECT COUNT(*) FROM criptomoeda
-    WHERE nome LIKE ? OR sigla LIKE ?
+    WHERE token_criptomoeda LIKE ?
 """

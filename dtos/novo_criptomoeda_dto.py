@@ -4,8 +4,4 @@ from datetime import date, datetime, timedelta
 from util.validators import *
 
 class NovoCriptomoedaDTO(BaseModel):
-    nome: str
-    sigla: str
-    valor: float
-    link_api: str
-    id_corretora: str
+    token_criptomoeda: str
