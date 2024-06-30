@@ -226,10 +226,10 @@
               <h5>Cadastrar Nova Criptomoeda</h5>
             </div>
             <div class="card-body px-lg-5 py-lg-5">
-              <form id="crypto-form">
+              <form id="crypto-form" role="form text-left">
                 <div class="form-group mb-3">
-                  <label class="text-center">Endereço do Token</label>
-                  <input type="text" id="token_criptomoeda" class="form-control" placeholder="0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48" required>
+                  <label class="text-center">Endereços dos Tokens (separados por vírgula)</label>
+                  <input type="text" id="tokens" class="form-control" placeholder="0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48, 0xB8c77482e45F1F44dE1745F52C74426C631bDD52" required>
                 </div>
                 <div class="text-center">
                   <button type="submit" class="btn bg-gradient-dark w-100 my-4 mb-2">Cadastrar Criptomoeda</button>
@@ -245,47 +245,56 @@
       </div>
     </div>
   </div>
-  
+
   <script>
     const form = document.getElementById('crypto-form');
     const cryptoList = document.getElementById('crypto-list');
-  
+
     form.addEventListener('submit', async (event) => {
       event.preventDefault();
-  
-      const tokenAddress = document.getElementById('token_criptomoeda').value.trim();
+
+      const tokenAddresses = document.getElementById('tokens').value.split(',');
       cryptoList.innerHTML = ''; // Limpar lista antes de adicionar novos itens
-  
-      const dadosParaEnviar = {
-        token_criptomoeda: tokenAddress // Ajustado para o nome correto do atributo
-      };
-  
-      const requestOptions = {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(dadosParaEnviar)
-      };
-  
-      try {
-        const response = await fetch('/cadastrar_criptomoeda', requestOptions);
-        if (!response.ok) {
-          throw new Error('Erro ao enviar formulário: ' + response.statusText);
-        }cryptoList
-        const dadosResposta = await response.json();
-  
-        // Exibir dados na lista, se necessário
-        console.log('Resposta do servidor:', dadosResposta);
-      } catch (error) {
-        console.error('Houve um problema com a requisição:', error);
-        // Exibe uma mensagem de erro na interface, se necessário
+
+      for (let tokenAddress of tokenAddresses) {
+        tokenAddress = tokenAddress.trim();
+        if (tokenAddress) {
+          const url = `https://api.coingecko.com/api/v3/coins/ethereum/contract/${tokenAddress}`;
+
+          try {
+            const response = await fetch(url);
+            if (!response.ok) {
+              throw new Error('Network response was not ok ' + response.statusText);
+            }
+            const dados = await response.json();
+
+            // Exibir dados na lista
+            const li = document.createElement('li');
+            li.innerHTML = `
+              <img src="${dados.image.small}" alt="${dados.name}">
+              <strong>Nome:</strong> ${dados.name} <br>
+              <strong>Sigla:</strong> ${dados.symbol} <br>
+              <strong>Preço (USD):</strong> ${dados.market_data.current_price.usd} <br>
+              <strong>Capitalização de Mercado (USD):</strong> ${dados.market_data.market_cap.usd} <br>
+              <strong>Volume de 24h (USD):</strong> ${dados.market_data.total_volume.usd} <br>
+              <strong>Descrição:</strong> ${dados.description.en} <br>
+              <strong>Fornecedor do Token:</strong> ${dados.contract_address}
+            `;
+            cryptoList.appendChild(li);
+          } catch (error) {
+            console.error('Houve um problema com a requisição:', error);
+            // Adiciona uma mensagem de erro na lista
+            const li = document.createElement('li');
+            li.textContent = 'Erro ao carregar dados para o token ' + tokenAddress + ': ' + error.message;
+            cryptoList.appendChild(li);
+          }
+        }
       }
+
+      // Opcional: limpar os campos do formulário
+      form.reset();
     });
-  </script>
-  
-  
-  
+  </script> 
   
           </div>
         </div>
