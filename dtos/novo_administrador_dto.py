@@ -6,9 +6,9 @@ from util.validators import *
 class NovoAdministradorDTO(BaseModel):
     nome: str
     cpf: str
+    data_nascimento: str
     email: str
     senha: str
-    data_nascimento: str
     # confirmacao_senha: str
 
 

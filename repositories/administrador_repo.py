@@ -24,9 +24,9 @@ class AdministradorRepo:
                     (
                         administrador.nome,
                         administrador.cpf,
+                        administrador.data_nascimento,
                         administrador.email,
-                        administrador.senha,
-                        administrador.data_nascimento
+                        administrador.senha
                     )
                 )
                 if cursor.rowcount > 0:

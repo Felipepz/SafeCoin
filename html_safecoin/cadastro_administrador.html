@@ -63,13 +63,13 @@
                       <input type="text" class="form-control" id="cpf" placeholder="CPF" aria-label="CPF" aria-describedby="cpf-addon">
                     </div>
                     <div class="mb-3">
+                      <input type="date" class="form-control" id="data_nascimento" placeholder="Data de Nascimento" aria-label="Data de Nascimento" aria-describedby="data-nascimento-addon">
+                    </div>
+                    <div class="mb-3">
                       <input type="email" class="form-control" id="email" placeholder="Email" aria-label="Email" aria-describedby="email-addon">
                     </div>
                     <div class="mb-3">
                       <input type="password" class="form-control" id="senha" placeholder="Senha" aria-label="Senha" aria-describedby="senha-addon">
-                    </div>
-                    <div class="mb-3">
-                      <input type="date" class="form-control" id="data_nascimento" placeholder="Data de Nascimento" aria-label="Data de Nascimento" aria-describedby="data-nascimento-addon">
                     </div>
                     <div class="text-center">
                       <button type="submit" class="btn bg-gradient-dark w-100 my-4 mb-2">Inscrever-se</button>
@@ -91,16 +91,16 @@
     
         const nome = document.getElementById('nome').value;
         const cpf = document.getElementById('cpf').value;
+        const data_nascimento = document.getElementById('data_nascimento').value;
         const email = document.getElementById('email').value;
         const senha = document.getElementById('senha').value;
-        const data_nascimento = document.getElementById('data_nascimento').value;
     
         const dados = {
           nome: nome,
           cpf: cpf,
+          data_nascimento: data_nascimento,
           email: email,
-          senha: senha,
-          data_nascimento: data_nascimento
+          senha: senha
         };
     
         fetch('/cadastro_administrador', {
