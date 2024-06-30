@@ -9,9 +9,9 @@ class MapperAdministrador():
             return Administrador(
                 nome=dto.nome,
                 cpf=dto.cpf,
+                data_nascimento=dto.data_nascimento,
                 email=dto.email,
-                senha=dto.senha,
-                data_nascimento=dto.data_nascimento
+                senha=dto.senha
             )
         
         # @classmethod
