@@ -310,7 +310,7 @@
         }
       })
       .then(data => {
-        document.getElementById('mensagem').innerText = 'transacao cadastrada com sucesso! ID: ' + data.MSG;
+        document.getElementById('mensagem').innerText = 'Transacao cadastrada com sucesso! ID: ' + data.MSG;
       })
       .catch(error => {
         document.getElementById('mensagem').innerText = 'Erro: ' + error.message;
