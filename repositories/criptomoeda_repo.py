@@ -50,17 +50,17 @@ class CriptomoedaRepo:
                     CriptomoedaRepo.inserir(Criptomoeda(**criptomoeda))
 
     class CriptomoedaRepo:
-        @classmethod
-        def obter_todos(cls) -> List[Criptomoeda]:
-            try:
-                with obter_conexao() as conexao:
-                    cursor = conexao.cursor()
-                    tuplas = cursor.execute(SQL_OBTER_TODOS_CRIPTOMOEDA).fetchall()
-                    criptomoedas = [Criptomoeda(*t) for t in tuplas]
-                    return criptomoedas
-            except sqlite3.Error as ex:
-                print(ex)
-                return []
+            @classmethod
+            def obter_todos(cls) -> List[Criptomoeda]:
+                try:
+                    with obter_conexao() as conexao:
+                        cursor = conexao.cursor()
+                        tuplas = cursor.execute(SQL_OBTER_TODOS_CRIPTOMOEDA).fetchall()
+                        criptomoedas = [Criptomoeda(*t) for t in tuplas]
+                        return criptomoedas
+                except sqlite3.Error as ex:
+                    print(ex)
+                    return []
 
     @classmethod
     def alterar(cls, criptomoeda: Criptomoeda) -> bool:
