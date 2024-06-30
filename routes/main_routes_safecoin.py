@@ -114,5 +114,13 @@ async def get_cadastro_criptomoeda(request: Request):
 async def get_cadastro_transacao(request: Request):
     return templates.TemplateResponse(
         "cadastro_transacao.html",
-        {"request": request},
-    )
+    ) 
+
+@router.post("/cadastro_transacao")
+async def post_transacao(transacao: NovoTransacaoDTO):
+    print(transacao)
+    # FUNCAO EM QUE O MAPPER E O DTO DEVE ESTAR CORRETORA
+    transacao_mapeado = MapperTransacao.mapear_cadastrar_novo_transacao_dto(transacao)
+    # INSERE O DTO MAPEADO NO BANCO DE DADOS, VERIFCAR SQL SE NECESSÁRIO
+    transacao_inserido = TransacaoRepo.inserir(transacao_mapeado)
+    return {"MSG": transacao_mapeado.id}
