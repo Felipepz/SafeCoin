@@ -5,11 +5,19 @@ from fastapi.responses import HTMLResponse, JSONResponse
 
 from dtos.entrar_dto import EntrarDTO
 from dtos.novo_corretora_dto import NovoCorretoraDTO
-from dtos.novo_usuario_dto import NovoUsuarioDTO
 from mapper.mapper_corretora import MapperCorretora
-from mapper.mapper_usuario import MapperUsuario
 from repositories.corretora_repo import CorretoraRepo
-from repositories.usuario_repo import UsuarioRepo
+from dtos.novo_usuario_dto import NovoUsuarioDTO
+from mapper.mapper_usuario import MapperUsuario
+from repositories.usuario_repo import UsuarioRepo 
+from dtos.novo_transacao_dto import NovoTransacaoDTO
+from mapper.mapper_transacao import MapperTransacao
+from repositories.transacao_repo import TransacaoRepo 
+from dtos.novo_administrador_dto import NovoAdministradorDTO
+from mapper.mapper_administrador import MapperAdministrador
+from repositories.administrador_repo import AdministradorRepo
+
+
 from util.html import ler_html
 
 from util.auth import (
@@ -85,6 +93,15 @@ async def get_cadastro_administrador(request: Request):
         "cadastro_administrador.html",
         {"request": request},
     )
+
+@router.post("/cadastro_administrador")
+async def post_administrador(administrador: NovoAdministradorDTO):
+    print(administrador)
+    # FUNCAO EM QUE O MAPPER E O DTO DEVE ESTAR CORRETORA
+    administrador_mapeado = MapperAdministrador.mapear_cadastrar_novo_administrador_dto(administrador)
+    # INSERE O DTO MAPEADO NO BANCO DE DADOS, VERIFCAR SQL SE NECESSÁRIO
+    administrador_inserido = AdministradorRepo.inserir(administrador_mapeado)
+    return {"MSG": administrador_inserido.id}
     
 @router.get("/cadastro_corretora")
 async def get_cadastro_corretora(request: Request):
@@ -115,4 +132,13 @@ async def get_cadastro_transacao(request: Request):
     return templates.TemplateResponse(
         "cadastro_transacao.html",
         {"request": request},
-    )
+    ) 
+
+@router.post("/cadastro_transacao")
+async def post_transacao(transacao: NovoTransacaoDTO):
+    print(transacao)
+    # FUNCAO EM QUE O MAPPER E O DTO DEVE ESTAR CORRETORA
+    transacao_mapeado = MapperTransacao.mapear_cadastrar_novo_transacao_dto(transacao)
+    # INSERE O DTO MAPEADO NO BANCO DE DADOS, VERIFCAR SQL SE NECESSÁRIO
+    transacao_inserido = TransacaoRepo.inserir(transacao_mapeado)
+    return {"MSG": transacao_inserido.id}

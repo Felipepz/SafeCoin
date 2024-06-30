@@ -224,44 +224,98 @@
   <!-- End Navbar -->
 
   
-<div class="container mt-5">
-  <div class="row justify-contnt-center">
-    <div class="card col-xl-7 col-lg-5 col-md-7 mx-auto">
-      <div class="col-lg-12">
-        <div class="card-header pb-0 p-3">
-          <div class="card-header text-center pt-4">
-            <h5>Cadastrar Transação</h5>
-          </div>
-          <div class="card-body px-lg-5 py-lg-5">
-            <form role="form text-left">
-              <div class="form-group mb-3">
-                <label class="text-center">Criptomoeda</label>
-                <input type="text" id="criptomoeda" class="form-control" placeholder="Criptomoeda" required>
-              </div>
-              <div class="form-group mb-3">
-                <label class="text-center">Ação</label>
-                <input type="text" id="acao" class="form-control" placeholder="Ação" required>
-              </div>
-              <div class="form-group mb-3">
-                <label class="text-center">Quantidade</label>
-                <input type="text" id="quantidade" class="form-control" placeholder="Quantidade" required>
-              </div>
-              <div class="form-group mb-3">
-                <label class="text-center">Data da Compra</label>
-                <input type="date" id="date" class="form-control" placeholder="Data" required>
-              </div>
-              <div class="text-center">
-                <button type="submit" class="btn bg-gradient-dark w-100 my-4 mb-2">Cadastrar Transação</button>
-              </div>
-            </form>
+  <div class="container mt-5">
+    <div class="row justify-content-center">
+      <div class="card col-xl-7 col-lg-5 col-md-7 mx-auto">
+        <div class="col-lg-12">
+          <div class="card-header pb-0 p-3">
+            <div class="card-header text-center pt-4">
+              <h5>Cadastrar Transação</h5>
+            </div>
+            <div class="card-body px-lg-5 py-lg-5">
+              <form role="form text-left">
+                <div class="form-group mb-3">
+                  <label class="text-center">Criptomoeda</label>
+                  <input type="text" id="id_criptomoeda" class="form-control" placeholder="Criptomoeda" required>
+                </div>
+                <div class="form-group mb-3">
+                  <label class="text-center">Ação</label>
+                  <input type="text" id="id_acao" class="form-control" placeholder="Ação" required>
+                </div>
+                <div class="form-group mb-3">
+                  <label class="text-center">Usuário</label>
+                  <input type="text" id="id_usuario" class="form-control" placeholder="Usuário" required>
+                </div>
+                <div class="form-group mb-3">
+                  <label class="text-center">Portfólio</label>
+                  <input type="text" id="id_portfolio" class="form-control" placeholder="Portfólio" required>
+                </div>
+                <div class="form-group mb-3">
+                  <label class="text-center">Quantidade</label>
+                  <input type="text" id="id_quantidade" class="form-control" placeholder="Quantidade" required>
+                </div>
+                <div class="form-group mb-3">
+                  <label class="text-center">Valor Unitário</label>
+                  <input type="text" id="id_valor_unitario" class="form-control" placeholder="Valor Unitário" required>
+                </div>
+                <!-- ver valor total -->
+                <div class="form-group mb-3">
+                  <label class="text-center">Valor Total</label>
+                  <input type="text"  class="form-control" placeholder="Valor Total" required>
+                </div>
+                <div class="text-center">
+                  <button type="submit" class="btn bg-gradient-dark w-100 my-4 mb-2">Cadastrar Transação</button>
+                </div>
+              </form>
+            </div>
           </div>
         </div>
       </div>
     </div>
   </div>
-</div>
+  
+
+  <script>
+    function enviarFormulario() {
+      const id_criptomoeda = document.getElementById('id_criptomoeda').value;
+      const id_acao = document.getElementById('id_acao').value;
+      const id_usuario = document.getElementById('id_usuario').value;
+      const id_portfolio = document.getElementById('id_portfolio').value;
+      const quantidade = document.getElementById('quantidade').value;
+      const valor_unitario = document.getElementById('valor_unitario').value;
 
 
+      const dados = {
+        id_criptomoeda: id_criptomoeda,
+        id_acao: id_acao,
+        id_usuario: id_usuario,
+        id_portfolio: id_portfolio,
+        quantidade: quantidade,
+        valor_unitario: valor_unitario
+      };
+
+      fetch('/cadastro_transacao', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(dados),
+      })
+      .then(response => {
+        if (response.ok) {
+          return response.json();
+        } else {
+          throw new Error('Erro ao enviar os dados');
+        }
+      })
+      .then(data => {
+        document.getElementById('mensagem').innerText = 'Transacao cadastrada com sucesso! ID: ' + data.MSG;
+      })
+      .catch(error => {
+        document.getElementById('mensagem').innerText = 'Erro: ' + error.message;
+      });
+    }
+  </script>
 
 <footer class="footer pt-3  ">
   <div class="container-fluid">
