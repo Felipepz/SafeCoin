@@ -32,3 +32,10 @@ SafeCoin é um portfólio onde os usuários podem registrar transações de comp
 
 #### API utilizada
 - https://docs.coingecko.com/reference/introduction
+
+## Tecnologias Utilizadas
+
+- **Backend**: [FastAPI](https://fastapi.tiangolo.com/)
+- **Banco de Dados**: [SQLite](https://www.sqlite.org/index.html)
+- **Frontend**: [Jinja](https://jinja.palletsprojects.com/), [HTML](https://developer.mozilla.org/en-US/docs/Web/HTML), [CSS](https://developer.mozilla.org/en-US/docs/Web/CSS)
+- **Controle de Versão e Hospedagem do Código**: [Git](https://git-scm.com/) e [GitHub](https://github.com/)
